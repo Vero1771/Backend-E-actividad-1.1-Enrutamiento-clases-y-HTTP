@@ -1,10 +1,10 @@
-const boletos = [
+const entradas = [
   {
     id: 1,
     id_venta: 1,
     id_funcion: 1,
     asiento: "A1",
-    precio: 12.50,
+    precio: 12.50
   },
   {
     id: 2,
@@ -57,4 +57,4 @@ const boletos = [
   }
 ]
 
-module.exports = boletos;
+module.exports = entradas;

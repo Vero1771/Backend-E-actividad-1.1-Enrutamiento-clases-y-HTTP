@@ -1,8 +1,8 @@
 const peliculas = require('../db/peliculas');
+let result;
 
 class PeliculasModel {
   mostrar_peliculas_por_id(id) {
-    let result;
     if (peliculas.length > 0) {
       let search_result = [];
       for (let i = 0; i < peliculas.length; i++) {
@@ -32,6 +32,22 @@ class PeliculasModel {
       };
       return result;
     }
+  }
+  ingresar_pelicula(peli) {
+    let new_id;
+    if(peliculas.length > 0){
+      new_id = peliculas[peliculas.length -1].id + 1;
+    }else {
+      new_id = 1; 
+    }
+    peli.id = new_id;
+    peliculas.push(peli);
+    result = {
+      code: 200,
+      message: "película agregada con éxito",
+      result: peliculas
+    };
+    return result;
   }
 }
 
