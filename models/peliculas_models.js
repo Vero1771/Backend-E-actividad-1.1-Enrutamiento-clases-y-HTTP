@@ -50,8 +50,20 @@ class PeliculasModel {
     } else {
       new_id = 1;
     }
-    peli.id = new_id;
-    peliculas.push(peli);
+
+    if(typeof(peli.categoria) === "string"){ //En caso de que llegue una categoría por el checkbox
+      peli.categoria = [peli.categoria];
+    }
+
+    peliculas.push({
+      id: new_id,
+      titulo: peli.titulo,
+      anio: Number(peli.anio),
+      duracion: Number(peli.duracion),
+      categoria: peli.categoria,
+      clasificacion: peli.clasificacion
+    });
+
     return result = {
       code: 200,
       message: "película agregada con éxito",

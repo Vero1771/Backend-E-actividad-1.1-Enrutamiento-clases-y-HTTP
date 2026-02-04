@@ -1,0 +1,35 @@
+<%-include("../components/head.ejs")%>
+  <body>
+
+    <%-include("../components/nav.ejs")%>
+    <h1><%= title %></h1>
+
+    <% if(peliculas_list.length <= 0) { %>
+      <h2>No hay películas registradas</h1>
+    <% }  %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Año</th>
+                <th>Duración</th>
+                <th>Categoría</th>
+                <th>Clasificación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% peliculas_list.forEach((peli, i) => { %>
+                <tr>
+                    <td><%= peli.titulo %></td>
+                    <td><%= peli.anio %></td>
+                    <td><%= peli.duracion %></td>
+                    <td><%= peli.categoria %></td>
+                    <td><%= peli.clasificacion %></td>
+            <% }); %>
+        </tbody>
+    </table>
+
+  </body>
+
+<%-include("../components/footer.ejs")%>
