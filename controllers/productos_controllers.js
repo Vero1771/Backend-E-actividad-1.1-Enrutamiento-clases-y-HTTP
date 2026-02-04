@@ -2,8 +2,16 @@ const Productos_Model = require('../models/productos_models');
 let result;
 
 class ProductosController {
+  mostrar_productos() {
+    result = Productos_Model.mostrar_productos();
+    return result;
+  }
   ingresar_producto(producto) {
     result = Productos_Model.ingresar_producto(producto);
+    return result;
+  }
+  eliminar_producto(id) {
+    result = Productos_Model.eliminar_producto(id);
     return result;
   }
 }
