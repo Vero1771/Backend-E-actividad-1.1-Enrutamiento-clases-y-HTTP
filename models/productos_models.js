@@ -35,6 +35,34 @@ class ProductosModel {
     };
     return result;
   }
+  editar_producto(id, actualizar) {
+    if (productos.length > 0) {
+      const index = productos.findIndex(p => p.id === Number(id));
+      if (index !== -1) {
+        productos[index] = actualizar;
+        productos[index].id = Number(id);
+        result = {
+          code: 200,
+          message: "producto editado con éxito",
+          result: productos[index]
+        };
+      } else {
+        result = {
+          code: 404,
+          message: "no hay productos registrados con ese ID",
+          result: []
+        };
+      }
+      return result;
+    } else {
+      result = {
+        code: 404,
+        message: "no hay productos registrados",
+        result: undefined
+      };
+      return result;
+    }
+  }
   eliminar_producto(id) {
     if (productos.length > 0) {
       const index = productos.findIndex(p => p.id === Number(id));

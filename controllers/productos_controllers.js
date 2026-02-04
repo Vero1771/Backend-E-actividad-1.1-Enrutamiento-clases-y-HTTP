@@ -10,6 +10,10 @@ class ProductosController {
     result = Productos_Model.ingresar_producto(producto);
     return result;
   }
+  editar_producto(id, actualizar) {
+    result = Productos_Model.editar_producto(id, actualizar);
+    return result;
+  }
   eliminar_producto(id) {
     result = Productos_Model.eliminar_producto(id);
     return result;

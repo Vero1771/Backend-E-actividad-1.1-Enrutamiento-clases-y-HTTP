@@ -21,6 +21,12 @@ router.post('/ingresar', function(req, res, next) {
   res.status(result.code).send(result)
 });
 
+/* (PUT) Editar películas */
+router.put('/editar/:id', function(req, res, next) {
+  result = Peliculas_Controller.editar_pelicula(req.params.id, req.body)
+  res.status(result.code).send(result) 
+});
+
 /* (DELETE) Eliminar películas por su ID */
 router.delete('/eliminar/:id', function(req, res, next) {
   result = Peliculas_Controller.eliminar_pelicula(req.params.id)

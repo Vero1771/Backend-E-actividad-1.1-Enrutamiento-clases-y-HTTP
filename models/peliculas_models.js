@@ -68,6 +68,34 @@ class PeliculasModel {
     };
     return result;
   }
+  editar_pelicula(id, actualizar) {
+    if (peliculas.length > 0) {
+      const index = peliculas.findIndex(p => p.id === Number(id));
+      if (index !== -1) {
+        peliculas[index] = actualizar;
+        peliculas[index].id = Number(id);
+        result = {
+          code: 200,
+          message: "película editada con éxito",
+          result: peliculas[index]
+        };
+      } else {
+        result = {
+          code: 404,
+          message: "no hay películas registradas con ese ID",
+          result: []
+        };
+      }
+      return result;
+    } else {
+      result = {
+        code: 404,
+        message: "no hay películas registradas",
+        result: undefined
+      };
+      return result;
+    }
+  }
   eliminar_pelicula(id) {
     if (peliculas.length > 0) {
       const idPeli = Number(id);

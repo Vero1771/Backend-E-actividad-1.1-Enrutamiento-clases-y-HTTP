@@ -15,6 +15,12 @@ router.post('/ingresar', function(req, res, next) {
   res.status(result.code).send(result)
 });
 
+/* (PUT) Editar productos */
+router.put('/editar/:id', function(req, res, next) {
+  result = Productos_Controller.editar_producto(req.params.id, req.body)
+  res.status(result.code).send(result) 
+});
+
 /* (DELETE) Eliminar productos por su ID */
 router.delete('/eliminar/:id', function(req, res, next) {
   result = Productos_Controller.eliminar_producto(req.params.id)

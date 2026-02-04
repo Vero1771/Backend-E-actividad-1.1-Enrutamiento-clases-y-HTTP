@@ -14,6 +14,10 @@ class PeliculasController {
     result = Peliculas_Model.ingresar_pelicula(peli);
     return result;
   }
+  editar_pelicula(id, actualizar) {
+    result = Peliculas_Model.editar_pelicula(id, actualizar);
+    return result;
+  }
   eliminar_pelicula(id) {
     result = Peliculas_Model.eliminar_pelicula(id);
     return result;
