@@ -6,50 +6,41 @@ let result;
 class PeliculasModel {
   mostrar_peliculas() {
     if (peliculas.length > 0) {
-      result = {
+      return result = {
         code: 200,
         message: "consulta completada con éxito",
         result: peliculas
       };
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay películas registradas",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   mostrar_peliculas_por_id(id) {
     if (peliculas.length > 0) {
-      let search_result = [];
-      for (let i = 0; i < peliculas.length; i++) {
-        if (peliculas[i].id === Number(id)) {
-          search_result.push(peliculas[i])
-        }
-      }
-      if (search_result.length > 0) {
-        result = {
+      const index = peliculas.findIndex(p => p.id === Number(id));
+      if (index !== -1) {
+        return result = {
           code: 200,
           message: "consulta completada con éxito",
-          result: search_result
+          result: peliculas[index]
         };
       } else {
-        result = {
+        return result = {
           code: 404,
           message: "no hay películas registradas con ese ID",
-          result: search_result
+          result: []
         };
       }
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay películas registradas",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   ingresar_pelicula(peli) {
@@ -61,12 +52,11 @@ class PeliculasModel {
     }
     peli.id = new_id;
     peliculas.push(peli);
-    result = {
+    return result = {
       code: 200,
       message: "película agregada con éxito",
       result: peliculas
     };
-    return result;
   }
   editar_pelicula(id, actualizar) {
     if (peliculas.length > 0) {
@@ -74,26 +64,24 @@ class PeliculasModel {
       if (index !== -1) {
         peliculas[index] = actualizar;
         peliculas[index].id = Number(id);
-        result = {
+        return result = {
           code: 200,
           message: "película editada con éxito",
           result: peliculas[index]
         };
       } else {
-        result = {
+        return result = {
           code: 404,
           message: "no hay películas registradas con ese ID",
           result: []
         };
       }
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay películas registradas",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   eliminar_pelicula(id) {
@@ -108,9 +96,11 @@ class PeliculasModel {
           .map(f => f.id);
 
         //Colocar las entradas de esas funciones en Null
+        let entradas_count = 0;
         entradas.forEach(entrada => {
           if (funcionesABorrar.includes(entrada.id_funcion)) {
             entrada.id_funcion = null;
+            entradas_count++;
           }
         });
 
@@ -124,30 +114,28 @@ class PeliculasModel {
         //Eliminar la película
         peliculas.splice(index, 1);
 
-        result = {
+        return result = {
           code: 200,
           message: "película eliminada con éxito",
           result: {
             funcionesEliminadas: funcionesABorrar.length,
-            entradasDesvinculadas: "Proceso completado",
+            entradasDesvinculadas: entradas_count,
             data: peliculas
           }
         };
       } else {
-        result = {
+        return result = {
           code: 404,
           message: "no hay películas registradas con ese ID",
           result: []
         };
       }
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay películas registradas",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
 }

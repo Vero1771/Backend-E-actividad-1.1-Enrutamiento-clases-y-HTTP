@@ -4,19 +4,17 @@ let result;
 class EntradasModel {
   mostrar_entradas() {
     if (entradas.length > 0) {
-      result = {
+      return result = {
         code: 200,
         message: "consulta completada con éxito",
         result: entradas
       };
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay entradas registradas",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   ingresar_entrada(entrada) {
@@ -28,12 +26,11 @@ class EntradasModel {
     }
     entrada.id = new_id;
     entradas.push(entrada);
-    result = {
+    return result = {
       code: 200,
       message: "entrada agregada con éxito",
       result: entradas
     };
-    return result;
   }
 }
 

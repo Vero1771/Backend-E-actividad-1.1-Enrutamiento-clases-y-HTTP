@@ -11,12 +11,11 @@ class SalasModel {
     }
     sala.id = new_id;
     salas.push(sala);
-    result = {
+    return result = {
       code: 200,
       message: "sala agregada con éxito",
       result: salas
     };
-    return result;
   }
 }
 

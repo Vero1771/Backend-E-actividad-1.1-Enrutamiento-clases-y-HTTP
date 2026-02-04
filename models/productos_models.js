@@ -4,19 +4,17 @@ let result;
 class ProductosModel {
   mostrar_productos() {
     if (productos.length > 0) {
-      result = {
+      return result = {
         code: 200,
         message: "consulta completada con éxito",
         result: productos
       };
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay productos registrados",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   ingresar_producto(producto) {
@@ -28,12 +26,11 @@ class ProductosModel {
     }
     producto.id = new_id;
     productos.push(producto);
-    result = {
+    return result = {
       code: 200,
       message: "producto agregado con éxito",
       result: productos
     };
-    return result;
   }
   editar_producto(id, actualizar) {
     if (productos.length > 0) {
@@ -41,26 +38,24 @@ class ProductosModel {
       if (index !== -1) {
         productos[index] = actualizar;
         productos[index].id = Number(id);
-        result = {
+        return result = {
           code: 200,
           message: "producto editado con éxito",
           result: productos[index]
         };
       } else {
-        result = {
+        return result = {
           code: 404,
           message: "no hay productos registrados con ese ID",
           result: []
         };
       }
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay productos registrados",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
   eliminar_producto(id) {
@@ -68,26 +63,24 @@ class ProductosModel {
       const index = productos.findIndex(p => p.id === Number(id));
       if (index !== -1) {
         productos.splice(index, 1);
-        result = {
+        return result = {
           code: 200,
           message: "producto eliminado con éxito",
           result: productos
         };
       } else {
-        result = {
+        return result = {
           code: 404,
           message: "no hay productos registrados con ese ID",
           result: []
         };
       }
-      return result;
     } else {
-      result = {
+      return result = {
         code: 404,
         message: "no hay productos registrados",
-        result: undefined
+        result: []
       };
-      return result;
     }
   }
 }

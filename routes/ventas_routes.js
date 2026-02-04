@@ -5,16 +5,7 @@ let result;
 
 /* (GET) Mostrar ventas en un rango de fecha */
 router.get('/rango', function (req, res, next) {
-  const { inicio, fin } = req.query;
-
-  if (!inicio || !fin) {
-    return res.status(400).json({
-      error: "Falta el rango de fechas"
-    });
-  }
-
-  result = Ventas_Controller.mostrar_ventas_por_rango(inicio, fin)
-  
+  result = Ventas_Controller.mostrar_ventas_por_rango(req.query)
   res.status(result.code).send(result)
 });
 

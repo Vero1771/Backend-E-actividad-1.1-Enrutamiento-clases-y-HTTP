@@ -2,8 +2,8 @@ const Ventas_Model = require('../models/ventas_models');
 let result;
 
 class VentasController {
-  mostrar_ventas_por_rango(inicio, fin) {
-    result = Ventas_Model.mostrar_ventas_por_rango(inicio, fin);
+  mostrar_ventas_por_rango(rango) {
+    result = Ventas_Model.mostrar_ventas_por_rango(rango);
     return result;
   }
   ingresar_venta(venta) {
