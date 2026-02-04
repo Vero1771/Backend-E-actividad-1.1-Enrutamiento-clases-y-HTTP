@@ -2,6 +2,23 @@ const funciones = require('../db/funciones');
 let result;
 
 class FuncionesModel {
+  mostrar_funciones() {
+    if (funciones.length > 0) {
+      result = {
+        code: 200,
+        message: "consulta completada con éxito",
+        result: funciones
+      };
+      return result;
+    } else {
+      result = {
+        code: 404,
+        message: "no hay funciones registradas",
+        result: undefined
+      };
+      return result;
+    }
+  }
   mostrar_funciones_recientes() {
     if (funciones.length > 0) {
 

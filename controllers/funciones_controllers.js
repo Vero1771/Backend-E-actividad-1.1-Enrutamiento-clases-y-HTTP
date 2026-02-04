@@ -2,6 +2,10 @@ const Funciones_Model = require('../models/funciones_models');
 let result;
 
 class FuncionesController {
+  mostrar_funciones() {
+    result = Funciones_Model.mostrar_funciones();
+    return result;
+  }
   mostrar_funciones_recientes() {
     result = Funciones_Model.mostrar_funciones_recientes();
     return result;

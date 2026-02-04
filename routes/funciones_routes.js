@@ -3,6 +3,12 @@ var router = express.Router();
 const Funciones_Controller = require('../controllers/funciones_controllers');
 let result;
 
+/* (GET) Mostrar todas las funciones */
+router.get('/', function(req, res, next) {
+  result = Funciones_Controller.mostrar_funciones()
+  res.status(result.code).send(result)
+});
+
 /* (GET) Mostrar las últimas 5 funciones recientes */
 router.get('/funciones_recientes', function(req, res, next) {
   result = Funciones_Controller.mostrar_funciones_recientes()
