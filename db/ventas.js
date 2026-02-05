@@ -50,7 +50,7 @@ const ventas = [
   {
     id: 9,
     fecha: "2023-10-08 18:20:00",
-    total: 37.50,
+    total: 37.70,
     metodo_pago: "Tarjeta de Crédito"
   },
   {

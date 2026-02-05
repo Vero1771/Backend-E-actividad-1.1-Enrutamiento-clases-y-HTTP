@@ -6,6 +6,10 @@ class ProductosController {
     result = Productos_Model.mostrar_productos();
     return result;
   }
+  mostrar_productos_por_id(id) {
+    result = Productos_Model.mostrar_productos_por_id(id);
+    return result;
+  }
   ingresar_producto(producto) {
     result = Productos_Model.ingresar_producto(producto);
     return result;

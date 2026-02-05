@@ -91,20 +91,20 @@ const funciones = [
   },
   {
     id: 16,
-    id_pelicula: 13,
+    id_pelicula: 1,
     id_sala: 1,
     fecha_hora: "2025-10-30 16:50:00"
   },
   {
     id: 17,
-    id_pelicula: 16,
+    id_pelicula: 5,
     id_sala: 1,
     fecha_hora: "2025-10-28 14:30:00"
   },
   {
     id: 18,
-    id_pelicula: 16,
-    id_sala: 10,
+    id_pelicula: 4,
+    id_sala: 4,
     fecha_hora: "2025-10-28 18:00:00"
   }
 ]

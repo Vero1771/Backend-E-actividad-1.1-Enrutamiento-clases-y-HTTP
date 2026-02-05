@@ -51,8 +51,10 @@ class PeliculasModel {
       new_id = 1;
     }
 
-    if(typeof(peli.categoria) === "string"){ //En caso de que llegue una categoría por el checkbox
+    if (typeof (peli.categoria) === "string") { //En caso de que llegue una categoría por el checkbox
       peli.categoria = [peli.categoria];
+    } else if (!peli.categoria) {
+      peli.categoria = []; // En caso de que no se marque ninguna
     }
 
     peliculas.push({
@@ -72,6 +74,13 @@ class PeliculasModel {
   }
   editar_pelicula(id, actualizar) {
     if (peliculas.length > 0) {
+      
+      if (typeof actualizar.categoria === "string") { //En caso de que llegue una categoría por el checkbox
+        actualizar.categoria = [actualizar.categoria];
+      } else if (!actualizar.categoria) {
+        actualizar.categoria = []; // En caso de que no se marque ninguna
+      }
+
       const index = peliculas.findIndex(p => p.id === Number(id));
       if (index !== -1) {
         peliculas[index] = actualizar;

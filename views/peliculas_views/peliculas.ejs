@@ -16,6 +16,7 @@
                 <th>Duración</th>
                 <th>Categoría</th>
                 <th>Clasificación</th>
+                <th>Administrar</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,14 @@
                     <td><%= peli.duracion %></td>
                     <td><%= peli.categoria %></td>
                     <td><%= peli.clasificacion %></td>
+                    <td>    
+                      <a href="/peliculas/actualizar/<%= peli.id %>" class="button">Editar</a>
+                      
+                      <form action="/peliculas/eliminar/<%= peli.id %>/?_method=DELETE" method="post" onsubmit="return confirm('¿Estás seguro de eliminar esta película?');">
+                        <input type="submit" class="button" value="X">
+                      </form>
+                    </td>
+                </tr>
             <% }); %>
         </tbody>
     </table>
