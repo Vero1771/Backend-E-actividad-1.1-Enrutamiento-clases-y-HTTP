@@ -1,18 +1,34 @@
 const peliculas = require('../db/peliculas');
 const funciones = require('../db/funciones');
 const entradas = require('../db/entradas');
-let result;
 
 class PeliculasModel {
+  _validarDatos(peli) {
+    const errors = [];
+    const camposObligatorios = ['titulo', 'anio', 'duracion', 'categoria', 'clasificacion'];
+    for (const campo of camposObligatorios) {
+      if (peli[campo] === undefined || peli[campo] === null) errors.push(`El campo ${campo} es obligatorio`);
+    }
+
+    if (typeof(peli.titulo) !== "string" || typeof(peli.clasificacion) !== "string") {
+      errors.push("El título y la clasificación deber ser una cadena de texto");
+    }
+
+    if (isNaN(peli.anio) || peli.anio < 0 || isNaN(peli.duracion) || peli.duracion < 0) {
+      errors.push("El año y la duración deben ser números válidos");
+    }
+
+    return errors;
+  }
   mostrar_peliculas() {
     if (peliculas.length > 0) {
-      return result = {
+      return {
         code: 200,
         message: "consulta completada con éxito",
         result: peliculas
       };
     } else {
-      return result = {
+      return {
         code: 404,
         message: "no hay películas registradas",
         result: []
@@ -23,20 +39,20 @@ class PeliculasModel {
     if (peliculas.length > 0) {
       const index = peliculas.findIndex(p => p.id === Number(id));
       if (index !== -1) {
-        return result = {
+        return {
           code: 200,
           message: "consulta completada con éxito",
           result: peliculas[index]
         };
       } else {
-        return result = {
+        return {
           code: 404,
           message: "no hay películas registradas con ese ID",
           result: []
         };
       }
     } else {
-      return result = {
+      return {
         code: 404,
         message: "no hay películas registradas",
         result: []
@@ -44,6 +60,15 @@ class PeliculasModel {
     }
   }
   ingresar_pelicula(peli) {
+    const error = this._validarDatos(peli);
+    if (error.length > 0) {
+      return {
+        code: 400,
+        message: "Ha ocurrido un problema al ingresar los datos",
+        result: error
+      };
+    }
+
     let new_id;
     if (peliculas.length > 0) {
       new_id = peliculas[peliculas.length - 1].id + 1;
@@ -51,7 +76,7 @@ class PeliculasModel {
       new_id = 1;
     }
 
-    if (typeof (peli.categoria) === "string") { //En caso de que llegue una categoría por el checkbox
+    if (typeof(peli.categoria) === "string") { //En caso de que llegue una categoría por el checkbox
       peli.categoria = [peli.categoria];
     } else if (!peli.categoria) {
       peli.categoria = []; // En caso de que no se marque ninguna
@@ -66,7 +91,7 @@ class PeliculasModel {
       clasificacion: peli.clasificacion
     });
 
-    return result = {
+    return {
       code: 200,
       message: "película agregada con éxito",
       result: peliculas
@@ -74,8 +99,17 @@ class PeliculasModel {
   }
   editar_pelicula(id, actualizar) {
     if (peliculas.length > 0) {
-      
-      if (typeof actualizar.categoria === "string") { //En caso de que llegue una categoría por el checkbox
+
+      const error = this._validarDatos(actualizar);
+      if (error.length > 0) {
+        return {
+          code: 400,
+          message: "Ha ocurrido un problema al ingresar los datos",
+          result: error
+        };
+      }
+
+      if (typeof(actualizar.categoria) === "string") { //En caso de que llegue una categoría por el checkbox
         actualizar.categoria = [actualizar.categoria];
       } else if (!actualizar.categoria) {
         actualizar.categoria = []; // En caso de que no se marque ninguna
@@ -85,20 +119,22 @@ class PeliculasModel {
       if (index !== -1) {
         peliculas[index] = actualizar;
         peliculas[index].id = Number(id);
-        return result = {
+        peliculas[index].anio = Number(actualizar.anio);
+        peliculas[index].duracion = Number(actualizar.duracion);
+        return {
           code: 200,
           message: "película editada con éxito",
           result: peliculas[index]
         };
       } else {
-        return result = {
+        return {
           code: 404,
           message: "no hay películas registradas con ese ID",
           result: []
         };
       }
     } else {
-      return result = {
+      return {
         code: 404,
         message: "no hay películas registradas",
         result: []
@@ -135,7 +171,7 @@ class PeliculasModel {
         //Eliminar la película
         peliculas.splice(index, 1);
 
-        return result = {
+        return {
           code: 200,
           message: "película eliminada con éxito",
           result: {
@@ -145,14 +181,14 @@ class PeliculasModel {
           }
         };
       } else {
-        return result = {
+        return {
           code: 404,
           message: "no hay películas registradas con ese ID",
           result: []
         };
       }
     } else {
-      return result = {
+      return {
         code: 404,
         message: "no hay películas registradas",
         result: []
