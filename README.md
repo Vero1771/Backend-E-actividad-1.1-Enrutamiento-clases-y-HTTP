@@ -69,7 +69,7 @@ npm run dev
   - `/ingresar` — (POST) Ingresar ventas.
 
 - `/productos` 
-  - `/mostrar` — (GET) Mostrar todos las productos.
+  - `/mostrar` — (GET) Mostrar todos los productos.
   - `/buscar/:id` — (GET) Mostrar productos por su ID.
   - `/ingresar` — (POST) Ingresar productos.
   - `/editar/:id` — (PUT) Editar productos.
