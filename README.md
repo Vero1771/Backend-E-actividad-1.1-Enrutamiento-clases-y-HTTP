@@ -65,7 +65,7 @@ npm run dev
   - `/ingresar` — (POST) Ingresar salas.
 
 - `/ventas` 
-  - `/rango` — (GET) Mostrar ventas en un rango de fecha .
+  - `/rango` — (GET) Mostrar ventas en un rango de fecha.
   - `/ingresar` — (POST) Ingresar ventas.
 
 - `/productos` 
@@ -76,11 +76,11 @@ npm run dev
   - `/eliminar/:id` — (DELETE) Eliminar productos por su ID.
 
 - `/ventas_productos` 
-  - `/mostrar` — (GET) Mostrar todos las ventas de productos.
+  - `/mostrar` — (GET) Mostrar todas las ventas de productos.
   - `/ingresar` — (POST) Ingresar ventas de productos.
 
 - `/entradas` 
-  - `/mostrar` — (GET) Mostrar todos las entradas.
+  - `/mostrar` — (GET) Mostrar todas las entradas.
   - `/ingresar` — (POST) Ingresar entradas.
 
 
